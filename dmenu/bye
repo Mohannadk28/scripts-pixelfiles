@@ -1,0 +1,42 @@
+#!/bin/bash
+
+declare -a options=(
+  "Shutdown"
+  "Reboot"
+  "Lock"
+  "Exit DWM"
+  "Close"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 15 -p 'Shutdown menu:' "${@}")
+
+case $choice in
+  "Lock") slock ;;
+
+  "Exit DWM") 
+    if [[ "$(echo -e "No\nYes" | dmenu -i -l 15 -p "Do you want to ${choice}?" "${@}" )" == "Yes" ]]; then
+      killall dwm
+    else
+      echo "Hmmm :\ " >> /dev/null
+    fi
+  ;;
+
+  "Reboot")
+    if [[ "$(echo -e "No\nYes" | dmenu -i -l 15 -p "Do you want to ${choice}?" "${@}" )" == "Yes" ]]; then
+      systemctl reboot
+    else
+      echo "Hmmm :\ " >> /dev/null
+    fi
+  ;;
+
+  "Shutdown")
+    if [[ "$(echo -e "No\nYes" | dmenu -i -l 15 -p "Do you want to ${choice}?" )" == "Yes" ]]; then
+      poweroff
+    else
+      echo "Hmmm :\ " >> /dev/null
+    fi
+  ;;
+
+  "Close") echo "Hmmm :\ " >> /dev/null;;
+esac
+

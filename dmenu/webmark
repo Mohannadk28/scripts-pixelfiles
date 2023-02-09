@@ -1,0 +1,15 @@
+#!/bin/bash
+
+WEBLISTSRC="$HOME/.config/qutebrowser/quickmarks"
+
+readarray -t webmarks < "$WEBLISTSRC"
+
+weblists=$(printf '%s\n' "${webmarks[@]}" | awk '{print "["$1"] - "$NF}' | sort)
+
+choice=$(printf '%s\n' "$weblists" | dmenu -i -l 15 -p "Open:")
+
+if [ "$choice" ]; then
+  url=$(echo "${choice}" | awk '{print $NF}') || exit
+  qutebrowser "$url"
+fi
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+declare -a options=(
+  "Random"
+  "Select"
+  "Close"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 15 -p 'Change Wallpaper:' "${@}")
+
+case $choice in
+  "Random") feh --bg-fill -z "$HOME"/.wallpapers/* ;;
+  "Select") nitrogen ;;
+  "Close") echo "Hmmm :\ " >> /dev/null;;
+esac
+
+

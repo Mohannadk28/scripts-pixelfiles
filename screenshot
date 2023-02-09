@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PICTURETIME=$(date +%Y%m%d%H%M%S)
+
+if [ "$1" == "select" ] ; then 
+  shotgun -g $(hacksaw -c fff) "$HOME"/Pictures/Screenshots/$(date +%Y%m%d%H%M%S).png  
+else
+  shotgun -s "$HOME"/Pictures/Screenshots/$(date +%Y%m%d%H%M%S).png
+fi
+
