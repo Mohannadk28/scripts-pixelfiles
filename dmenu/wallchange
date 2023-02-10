@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mpv --no-video ~/.pixelfiles/sounds-pixelfiles/menu1.mp3 &
+
 declare -a options=(
   "Random"
   "Select"
@@ -9,9 +11,19 @@ declare -a options=(
 choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 15 -p 'Change Wallpaper:' "${@}")
 
 case $choice in
-  "Random") feh --bg-fill -z "$HOME"/.wallpapers/* ;;
-  "Select") nitrogen ;;
-  "Close") echo "Hmmm :\ " >> /dev/null;;
+  "Random") 
+    mpv --no-video ~/.pixelfiles/sounds-pixelfiles/menu2.mp3 
+    feh --bg-fill -z "$HOME"/.wallpapers/* 
+  ;;
+  
+  "Select")
+    mpv --no-video ~/.pixelfiles/sounds-pixelfiles/menu2.mp3 &
+    nitrogen 
+  ;;
+  
+  "Close") 
+    mpv --no-video ~/.pixelfiles/sounds-pixelfiles/cancel.mp3
+  ;;
 esac
 
 
