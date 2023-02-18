@@ -11,6 +11,6 @@ choice=$(printf '%s\n' "$weblists" | dmenu -i -l 15 -p "Open:")
 if [ "$choice" ]; then
   url=$(echo "${choice}" | awk '{print $NF}') || exit
   mpv --no-video ~/.pixelfiles/sounds-pixelfiles/menu2.mp3 &
-  qutebrowser "$url"
+  firefox "$url"
 fi
 
