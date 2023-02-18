@@ -13,7 +13,7 @@ choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 15 -p 'Change Wallpaper:' "
 case $choice in
   "Random") 
     mpv --no-video ~/.pixelfiles/sounds-pixelfiles/menu2.mp3 
-    feh --bg-fill -z "$HOME"/.wallpapers/* 
+    feh --no-fehbg --bg-fill -z "$HOME"/.pixelfiles/wallpapers-pixelfiles/* 
   ;;
   
   "Select")
